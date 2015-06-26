@@ -13,18 +13,23 @@ Plugin 'gmarik/Vundle.vim'
 
 Plugin 'bling/vim-airline'
 Plugin 'scrooloose/nerdtree'
-Plugin 'kien/ctrlp.vim'
+Plugin 'scrooloose/syntastic'
 Plugin 'mileszs/ack.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-abolish'
 Plugin 'tmhedberg/matchit'
 Plugin 'henrik/vim-indexed-search'
 Plugin 'vim-scripts/Align'
 Plugin 'lrvick/Conque-Shell'
 Plugin 'elzr/vim-json'
 Plugin 'sjl/gundo.vim'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'Shougo/unite.vim'
+Plugin 'Shougo/neomru.vim'
+Plugin 'Shougo/vimproc.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -52,6 +57,40 @@ let g:airline_symbols.linenr = '⭡'
 
 " required so the status bar actually shows
 set laststatus=2
+
+" ============================================================================
+" Unite config
+"
+
+nnoremap <silent> <Leader>m :Unite -buffer-name=recent -winheight=10 file_mru<cr>
+nnoremap <Leader>b :Unite -buffer-name=buffers -winheight=10 buffer<cr>
+
+" CtrlP search
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#filters#sorter_default#use(['sorter_rank'])
+call unite#custom#source('file_rec','sorters','sorter_rank')
+
+" replacing unite with ctrl-p
+nnoremap <silent> <C-p> :Unite -start-insert -buffer-name=files -winheight=10 file_rec/async<cr>
+
+nnoremap <Leader>f :Unite -no-quit grep:.<cr>
+
+if executable('ack-grep')
+  let g:unite_source_grep_command = 'ack-grep'
+  let g:unite_source_grep_default_opts = '-i --no-heading --no-color -k -H'
+  let g:unite_source_grep_recursive_opt = ''
+endif
+
+" ============================================================================
+" Syntastic config
+"
+
+let g:syntastic_enable_signs = 1 " mark syntax errors with :signs
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 " ============================================================================
 
@@ -86,7 +125,7 @@ set foldnestmax=3     " deepest fold is 3 levels
 set nofoldenable      " dont fold by default
 
 set wildmode=list:longest         " make cmdline tab completion similar to bash
-set wildmenu                      " enable ctrl-n and ctrl-p to scroll thru matches
+"set wildmenu                      " enable ctrl-n and ctrl-p to scroll thru matches
 set wildignore=*.o,*.obj,*~,*.pyc " stuff to ignore when tab completing
 
 " load ftplugins and indent files

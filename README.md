@@ -24,6 +24,16 @@ And .gvimrc: `$ echo "source ~/.vim/gvimrc" > ~/.gvimrc`
 
 `$ ln -s .vim/fonts/*.otf $HOME/.fonts/`
 
+5. Compile vimproc
+
+`$ cd bundle/vimproc; make -f make_unix.mak`
+
+Caveat Emptor
+-------------
+
+I only tested this on my own PC, running Arch Linux, VIM 7.4, and never on any
+major holiday, so use at your own risk!
+
 Credits
 -------
 
