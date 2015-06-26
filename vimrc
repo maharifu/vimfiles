@@ -24,6 +24,7 @@ Plugin 'henrik/vim-indexed-search'
 Plugin 'vim-scripts/Align'
 Plugin 'lrvick/Conque-Shell'
 Plugin 'elzr/vim-json'
+Plugin 'sjl/gundo.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -139,6 +140,9 @@ else
         endif
     endif
 endif
+
+" key mapping for Gundo
+nnoremap <F4> :GundoToggle<CR>
 
 silent! nmap <silent> <Leader>p :NERDTreeToggle<CR>
 
