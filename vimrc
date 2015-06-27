@@ -70,8 +70,16 @@ call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
 call unite#custom#source('file_rec','sorters','sorter_rank')
 
+
 " replacing unite with ctrl-p
-nnoremap <silent> <C-p> :Unite -start-insert -buffer-name=files -winheight=10 file_rec/async<cr>
+" check for vimproc, silence 'missing DLL error'
+silent! if unite#util#has_vimproc()
+  " if vimproc is installed and working, use async
+  nnoremap <silent> <C-p> :Unite -start-insert -buffer-name=files -winheight=10 file_rec/async<cr>
+else
+  " else, use normal call
+  nnoremap <silent> <C-p> :Unite -start-insert -buffer-name=files -winheight=10 file_rec<cr>
+end
 
 nnoremap <Leader>f :Unite -no-quit grep:.<cr>
 
