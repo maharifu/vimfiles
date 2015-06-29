@@ -62,26 +62,29 @@ set laststatus=2
 " Unite config
 "
 
-nnoremap <silent> <Leader>m :Unite -buffer-name=recent -winheight=10 file_mru<cr>
-nnoremap <Leader>b :Unite -buffer-name=buffers -winheight=10 buffer<cr>
+nnoremap <silent> <Leader>m :Unite -direction=botright -buffer-name=recent
+                                 \ -winheight=10 file_mru<cr>
+nnoremap <silent> <Leader>b :Unite -direction=botright -buffer-name=buffers
+                                 \ -winheight=10 buffer<cr>
+nnoremap <silent> <Leader>f :Unite -direction=botright -no-quit grep:.<cr>
 
 " CtrlP search
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
 call unite#custom#source('file_rec','sorters','sorter_rank')
 
-
 " replacing unite with ctrl-p
 " check for vimproc, silence 'missing DLL error'
 silent! if unite#util#has_vimproc()
   " if vimproc is installed and working, use async
-  nnoremap <silent> <C-p> :Unite -start-insert -buffer-name=files -winheight=10 file_rec/async<cr>
+  nnoremap <silent> <C-p> :Unite -direction=botright -start-insert
+                               \ -buffer-name=files -winheight=10
+                               \ file_rec/async<cr>
 else
   " else, use normal call
-  nnoremap <silent> <C-p> :Unite -start-insert -buffer-name=files -winheight=10 file_rec<cr>
+  nnoremap <silent> <C-p> :Unite -direction=botright -start-insert
+                               \ -buffer-name=files -winheight=10 file_rec<cr>
 end
-
-nnoremap <Leader>f :Unite -no-quit grep:.<cr>
 
 if executable('ack-grep')
   let g:unite_source_grep_command = 'ack-grep'
@@ -133,7 +136,6 @@ set foldnestmax=3     " deepest fold is 3 levels
 set nofoldenable      " dont fold by default
 
 set wildmode=list:longest         " make cmdline tab completion similar to bash
-"set wildmenu                      " enable ctrl-n and ctrl-p to scroll thru matches
 set wildignore=*.o,*.obj,*~,*.pyc " stuff to ignore when tab completing
 
 " load ftplugins and indent files
@@ -171,7 +173,7 @@ if has("gui_running")
         set enc=utf-8
     endif
 else
-    " dont load csapprox if there is no gui support - silences an annoying warning
+    " dont load csapprox if there is no gui support - silences annoying warning
     let g:CSApprox_loaded = 1
 
     " set railscasts colorscheme when running vim in gnome terminal
