@@ -73,17 +73,24 @@ call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
 call unite#custom#source('file_rec','sorters','sorter_rank')
 
-" replacing unite with ctrl-p
-" check for vimproc, silence 'missing DLL error'
-silent! if unite#util#has_vimproc()
-  " if vimproc is installed and working, use async
+if has("nvim")
+  " if neovim is installed and working, use neovim's job APIs
   nnoremap <silent> <C-p> :Unite -direction=botright -start-insert
                                \ -buffer-name=files -winheight=10
-                               \ file_rec/async<cr>
+                               \ file_rec/neovim<cr>
 else
-  " else, use normal call
-  nnoremap <silent> <C-p> :Unite -direction=botright -start-insert
-                               \ -buffer-name=files -winheight=10 file_rec<cr>
+  " replacing unite with ctrl-p
+  " check for vimproc, silence 'missing DLL error'
+  silent! if unite#util#has_vimproc()
+    " if vimproc is installed and working, use async
+    nnoremap <silent> <C-p> :Unite -direction=botright -start-insert
+                                 \ -buffer-name=files -winheight=10
+                                 \ file_rec/async<cr>
+  else
+    " else, use normal call
+    nnoremap <silent> <C-p> :Unite -direction=botright -start-insert
+                                 \ -buffer-name=files -winheight=10 file_rec<cr>
+  end
 end
 
 if executable('ack-grep')
@@ -150,50 +157,51 @@ set ic
 set smartcase
 
 if has("gui_running")
-    " tell the term has 256 colors
-    set t_Co=256
+  " tell the term has 256 colors
+  set t_Co=256
 
-    colorscheme molokai
-    set guitablabel=%M%t
-    set lines=40
-    set columns=115
+  colorscheme molokai
+  set guitablabel=%M%t
+  set lines=40
+  set columns=115
 
-    if has("gui_gnome") || has("gui_gtk2")
-        colorscheme railscasts
-        set guifont=Ubuntu\ Mono\ 10
-    endif
+  if has("gui_gnome") || has("gui_gtk2")
+    colorscheme railscasts
+    set guifont=Ubuntu\ Mono\ 10
+  endif
 
-    if has("gui_mac") || has("gui_macvim")
-        set guifont=Menlo:h12
-        set transparency=7
-    endif
+  if has("gui_mac") || has("gui_macvim")
+    set guifont=Menlo:h12
+    set transparency=7
+  endif
 
-    if has("gui_win32") || has("gui_win32s")
-        set guifont=Consolas:h12
-        set enc=utf-8
-    endif
+  if has("gui_win32") || has("gui_win32s")
+    set guifont=Consolas:h12
+    set enc=utf-8
+  endif
 else
-    " dont load csapprox if there is no gui support - silences annoying warning
-    let g:CSApprox_loaded = 1
+  " dont load csapprox if there is no gui support - silences annoying warning
+  let g:CSApprox_loaded = 1
 
-    " set railscasts colorscheme when running vim in gnome terminal
-    if $COLORTERM == 'gnome-terminal'
-        set term=gnome-256color
-        colorscheme molokai
+  " set railscasts colorscheme when running vim in gnome terminal
+  if $COLORTERM == 'gnome-terminal'
+    set term=gnome-256color
+    colorscheme molokai
+  else
+    if $TERM == 'xterm'
+      set t_Co=256
+      colorscheme molokai
     else
-        if $TERM == 'xterm'
-            set t_Co=256
-            colorscheme molokai
-        else
-            colorscheme default
-        endif
+      colorscheme default
     endif
+  endif
 endif
 
 " key mapping for Gundo
 nnoremap <F4> :GundoToggle<CR>
 
 silent! nmap <silent> <Leader>p :NERDTreeToggle<CR>
+let NERDTreeIgnore=['\.o$', '\~$', '\.pyc$']
 
 " make <c-l> clear the highlight as well as redraw
 nnoremap <C-L> :nohls<CR><C-L>
@@ -215,3 +223,14 @@ else
   " if not neovim set :term to use Conque
   cabbrev term ConqueTerm bash
 endif
+
+" Disable syntastic on LaTeX files
+let g:syntastic_mode_map = {
+    \ 'mode': 'active',
+    \ 'active_filetypes': [],
+    \ 'passive_filetypes': ['tex'] }
+" Quick mode toggle
+nnoremap <C-w>E :SyntasticToggleMode<CR>
+
+" Open new tabs quicker
+nnoremap <Leader><Tab> :tabnew<CR>
