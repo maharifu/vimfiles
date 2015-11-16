@@ -164,7 +164,7 @@ if has("gui_running")
 
   if has("gui_gnome") || has("gui_gtk2")
     colorscheme railscasts
-    set guifont=Ubuntu\ Mono\ 10
+    set guifont=Hack\ Regular\ 8
   endif
 
   if has("gui_mac") || has("gui_macvim")
@@ -206,7 +206,8 @@ inoremap <C-L> <C-O>:nohls<CR>
 
 " turn on highlight for column 81 (marking an 80 character line)
 " vim 7.3+ required
-set colorcolumn=81
+set textwidth=80
+set colorcolumn=+1
 " set the color to grey to go better with default theme
 highlight ColorColumn ctermbg=8 guibg=grey
 
