@@ -235,3 +235,6 @@ nnoremap <Leader><Tab> :tabnew<CR>
 
 " set .axlsx files to ruby syntax
 autocmd BufRead,BufNewFile *.axlsx set filetype=ruby
+
+" Close all buffers
+command Bw :bufdo bw
