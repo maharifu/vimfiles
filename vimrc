@@ -1,40 +1,39 @@
 " ============================================================================
 " Vundle init and config
 "
-set nocompatible              " be iMproved, required
-filetype off                  " required
+set nocompatible " be iMproved, required
+filetype off     " required
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+Plugin 'gmarik/Vundle.vim'              " the plug-in manager for Vim
 
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
-Plugin 'mileszs/ack.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-rails'
-Plugin 'tpope/vim-abolish'
-Plugin 'tmhedberg/matchit'
-Plugin 'henrik/vim-indexed-search'
-Plugin 'vim-scripts/Align'
-Plugin 'lrvick/Conque-Shell'
-Plugin 'elzr/vim-json'
-Plugin 'sjl/gundo.vim'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'Shougo/unite.vim'
-Plugin 'Shougo/neomru.vim'
-Plugin 'Shougo/vimproc.vim'
+Plugin 'vim-airline/vim-airline'        " lean & mean status/tabline for vim that's light as air
+Plugin 'vim-airline/vim-airline-themes' " A collection of themes for vim-airline
+Plugin 'scrooloose/nerdtree'            " A tree explorer plugin for vim.
+Plugin 'scrooloose/syntastic'           " Syntax checking hacks for vim
+Plugin 'tpope/vim-fugitive'             " a Git wrapper so awesome, it should be illegal
+Plugin 'tpope/vim-commentary'           " comment stuff out
+Plugin 'tpope/vim-surround'             " quoting/parenthesizing made simple
+Plugin 'tpope/vim-rails'                " Ruby on Rails power tools
+Plugin 'tpope/vim-abolish'              " easily search for, substitute, and abbreviate multiple variants of a word
+Plugin 'tmhedberg/matchit'              " extended % matching for HTML, LaTeX, and many other languages
+Plugin 'henrik/vim-indexed-search'      " Show 'Match 123 of 456 /search term/' in Vim searches.
+Plugin 'lrvick/Conque-Shell'            " Run interactive commands inside a Vim buffer
+Plugin 'elzr/vim-json'                  " A better JSON for Vim: distinct highlighting of keywords vs values, JSON-specific (non-JS) warnings, quote concealing.
+Plugin 'sjl/gundo.vim'                  " Graph your Vim undo tree in style.
+Plugin 'terryma/vim-multiple-cursors'   " True Sublime Text style multiple selections for Vim
+Plugin 'Shougo/unite.vim'               " Unite and create user interfaces
+Plugin 'Shougo/neomru.vim'              " MRU plugin includes unite.vim MRU sources
+Plugin 'Shougo/vimproc.vim'             " Interactive command execution in Vim.
+Plugin 'junegunn/vim-easy-align'        " A Vim alignment plugin
 
 " All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
+call vundle#end()         " required
+filetype plugin indent on " load ftplugins and indent files
 
 " ============================================================================
 " Airline config
@@ -62,9 +61,9 @@ set laststatus=2
 
 nnoremap <silent> <Leader>m :Unite -direction=botright -buffer-name=recent
                                  \ -winheight=10 file_mru<cr>
-nnoremap <silent> <Leader>b :Unite -direction=botright -buffer-name=buffers
+nnoremap <silent> <C-b> :Unite -direction=botright -buffer-name=buffers
                                  \ -winheight=10 buffer<cr>
-nnoremap <silent> <Leader>f :Unite -direction=botright -no-quit grep:.<cr>
+nnoremap <silent> <C-f> :Unite -direction=botright -no-quit grep:.<cr>
 
 " CtrlP search
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
@@ -93,7 +92,7 @@ end
 
 if executable('ack')
   let g:unite_source_grep_command = 'ack'
-  let g:unite_source_grep_default_opts = '-i --no-heading --no-color -k -H'
+  let g:unite_source_grep_default_opts = '--no-heading --no-color -k -H'
   let g:unite_source_grep_recursive_opt = ''
 endif
 
@@ -107,6 +106,15 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+" ============================================================================
+" EasyAlign config
+"
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 
 " ============================================================================
 
@@ -143,16 +151,11 @@ set nofoldenable      " dont fold by default
 set wildmode=list:longest         " make cmdline tab completion similar to bash
 set wildignore=*.o,*.obj,*~,*.pyc " stuff to ignore when tab completing
 
-" load ftplugins and indent files
-filetype plugin on
-filetype indent on
-
 " turn on syntax highlighting
 syntax on
 
 " activate smartcase
-set ic
-set smartcase
+set ignorecase smartcase
 
 if has("gui_running")
   " tell the term has 256 colors
@@ -160,12 +163,12 @@ if has("gui_running")
 
   colorscheme molokai
   set guitablabel=%M%t
-  set lines=40
-  set columns=115
+"  set lines=40
+"  set columns=115
 
   if has("gui_gnome") || has("gui_gtk2")
     colorscheme railscasts
-    set guifont=Hack\ Regular\ 8
+    set guifont=Hack\ Regular\ 9
   endif
 
   if has("gui_mac") || has("gui_macvim")
@@ -181,17 +184,12 @@ else
   " dont load csapprox if there is no gui support - silences annoying warning
   let g:CSApprox_loaded = 1
 
-  " set railscasts colorscheme when running vim in gnome terminal
+  colorscheme molokai
+
   if $COLORTERM == 'gnome-terminal'
     set term=gnome-256color
-    colorscheme molokai
   else
-    if $TERM == 'xterm'
-      set t_Co=256
-      colorscheme molokai
-    else
-      colorscheme default
-    endif
+    set t_Co=256
   endif
 endif
 
@@ -227,7 +225,7 @@ endif
 let g:syntastic_mode_map = {
     \ 'mode': 'active',
     \ 'active_filetypes': [],
-    \ 'passive_filetypes': ['tex'] }
+    \ 'passive_filetypes': ['tex', 'plaintex'] }
 " Quick mode toggle
 nnoremap <C-w>E :SyntasticToggleMode<CR>
 
@@ -239,3 +237,6 @@ autocmd BufRead,BufNewFile *.axlsx set filetype=ruby
 
 " Close all buffers
 command Bw :bufdo bw
+
+" Save as root
+command W w !sudo tee % > /dev/null

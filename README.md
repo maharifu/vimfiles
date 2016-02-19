@@ -11,11 +11,11 @@ Usage
 
 1. Clone the repo to $HOME/.vim
 
-  `$ git clone git://github.com/maharifu/vimfiles.git ~/.vim --recursive`
+  `$ git clone git://github.com/maharifu/vimfiles.git $HOME/.vim --recursive`
 
 2. Create a .vimrc file
 
-  `$ echo "source ~/.vim/vimrc" > ~/.vimrc`
+  `$ echo "source $HOME/.vim/vimrc" > $HOME/.vimrc`
 
 3. Run vim with Vundle to install missing plugins
 
@@ -23,7 +23,8 @@ Usage
 
 4. Install the Powerline fonts
 
-  `$ ln -s .vim/fonts/*.otf $HOME/.fonts/`
+  `$ mkdir $HOME/.fonts`
+  `$ ln -s $HOME/.vim/fonts/*.otf $HOME/.fonts/`
 
 5. (optional) Compile vimproc
 
@@ -31,7 +32,7 @@ Usage
   unite can use 'async' methods. This increases performance when searching for
   files in directories with a large number of files.
 
-  `$ cd ~/.vim/bundle/vimproc.vim; make -f make_unix.mak`
+  `$ cd $HOME/.vim/bundle/vimproc.vim; make -f make_unix.mak`
 
 Caveat Emptor
 -------------
