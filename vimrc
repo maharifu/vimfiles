@@ -184,13 +184,17 @@ else
   " dont load csapprox if there is no gui support - silences annoying warning
   let g:CSApprox_loaded = 1
 
-  colorscheme molokai
-
   if $COLORTERM == 'gnome-terminal'
     set term=gnome-256color
   else
     set t_Co=256
   endif
+
+  " Disable Background Color Erase (BCE) so that color schemes
+  " work properly when Vim is used inside tmux and GNU screen.
+  set t_ut=
+
+  colorscheme molokai
 endif
 
 " key mapping for Gundo
@@ -215,7 +219,7 @@ let python_hightlight_all = 1
 
 " key mapping for exiting terminal (Neovim)
 if has("nvim")
-  tmap <C-A> <C-\><C-N>
+  tmap <Esc> <C-\><C-N>
 else
   " if not neovim set :term to use Conque
   cabbrev term ConqueTerm bash
