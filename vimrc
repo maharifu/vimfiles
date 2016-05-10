@@ -30,6 +30,7 @@ Plugin 'Shougo/unite.vim'               " Unite and create user interfaces
 Plugin 'Shougo/neomru.vim'              " MRU plugin includes unite.vim MRU sources
 Plugin 'Shougo/vimproc.vim'             " Interactive command execution in Vim.
 Plugin 'junegunn/vim-easy-align'        " A Vim alignment plugin
+Plugin 'hail2u/vim-css3-syntax'         " Add CSS3 syntax support to vim's built-in `syntax/css.vim`.
 
 " All of your Plugins must be added before the following line
 call vundle#end()         " required
@@ -68,7 +69,8 @@ nnoremap <silent> <C-f> :Unite -direction=botright -no-quit grep:.<cr>
 " CtrlP search
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
-call unite#custom#source('file_rec','sorters','sorter_rank')
+call unite#custom#source('file_rec,file_rec/async,file_rec/neovim','sorters','sorter_rank')
+call unite#custom#source('file_rec,file_rec/async,file_rec/neovim', 'ignore_pattern', 'node_modules\|.sass-cache')
 
 if has("nvim")
   " if neovim is installed and working, use neovim's job APIs
@@ -90,10 +92,20 @@ else
   end
 end
 
-if executable('ack')
-  let g:unite_source_grep_command = 'ack'
-  let g:unite_source_grep_default_opts = '--no-heading --no-color -k -H'
+if executable('ag')
+  " ag is faster so make it default
+  let g:unite_source_grep_command = 'ag'
+  let g:unite_source_grep_default_opts =
+      \ '-i --vimgrep --hidden --ignore ' .
+      \ '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
   let g:unite_source_grep_recursive_opt = ''
+else
+  if executable('ack')
+    " ack is still faster than grep
+    let g:unite_source_grep_command = 'ack'
+    let g:unite_source_grep_default_opts = '--no-heading --no-color -k -H'
+    let g:unite_source_grep_recursive_opt = ''
+  endif
 endif
 
 " ============================================================================
@@ -106,6 +118,9 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+" Reenable go checkers
+let g:syntastic_go_checkers = ["go"]
 
 " ============================================================================
 " EasyAlign config
