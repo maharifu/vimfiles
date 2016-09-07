@@ -33,6 +33,7 @@ Plugin 'junegunn/vim-easy-align'          " A Vim alignment plugin
 Plugin 'hail2u/vim-css3-syntax'           " Add CSS3 syntax support to vim's built-in `syntax/css.vim`.
 Plugin 'mustache/vim-mustache-handlebars' " mustache and handlebars mode for vim
 Plugin 'leafgarland/typescript-vim'       " Typescript syntax files for Vim
+Plugin 'godlygeek/csapprox'               " Make gvim-only colorschemes work transparently in terminal vim http://www.vim.org/scripts/script.php?script_id=2390
 
 " All of your Plugins must be added before the following line
 call vundle#end()         " required
@@ -183,7 +184,7 @@ if has("gui_running")
 "  set lines=40
 "  set columns=115
 
-  if has("gui_gnome") || has("gui_gtk2")
+  if has("gui_gnome") || has("gui_gtk2") || has("gui_gtk3")
     colorscheme railscasts
     set guifont=Hack\ Regular\ 9
   endif
@@ -261,3 +262,6 @@ command Bw :bufdo bw
 
 " Save as root
 command W w !sudo tee % > /dev/null
+
+" For performance reasons
+set synmaxcol=120
