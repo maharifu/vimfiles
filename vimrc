@@ -9,28 +9,30 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'              " the plug-in manager for Vim
+Plugin 'gmarik/Vundle.vim'                " the plug-in manager for Vim
 
-Plugin 'vim-airline/vim-airline'        " lean & mean status/tabline for vim that's light as air
-Plugin 'vim-airline/vim-airline-themes' " A collection of themes for vim-airline
-Plugin 'scrooloose/nerdtree'            " A tree explorer plugin for vim.
-Plugin 'scrooloose/syntastic'           " Syntax checking hacks for vim
-Plugin 'tpope/vim-fugitive'             " a Git wrapper so awesome, it should be illegal
-Plugin 'tpope/vim-commentary'           " comment stuff out
-Plugin 'tpope/vim-surround'             " quoting/parenthesizing made simple
-Plugin 'tpope/vim-rails'                " Ruby on Rails power tools
-Plugin 'tpope/vim-abolish'              " easily search for, substitute, and abbreviate multiple variants of a word
-Plugin 'tmhedberg/matchit'              " extended % matching for HTML, LaTeX, and many other languages
-Plugin 'henrik/vim-indexed-search'      " Show 'Match 123 of 456 /search term/' in Vim searches.
-Plugin 'lrvick/Conque-Shell'            " Run interactive commands inside a Vim buffer
-Plugin 'elzr/vim-json'                  " A better JSON for Vim: distinct highlighting of keywords vs values, JSON-specific (non-JS) warnings, quote concealing.
-Plugin 'sjl/gundo.vim'                  " Graph your Vim undo tree in style.
-Plugin 'terryma/vim-multiple-cursors'   " True Sublime Text style multiple selections for Vim
-Plugin 'Shougo/unite.vim'               " Unite and create user interfaces
-Plugin 'Shougo/neomru.vim'              " MRU plugin includes unite.vim MRU sources
-Plugin 'Shougo/vimproc.vim'             " Interactive command execution in Vim.
-Plugin 'junegunn/vim-easy-align'        " A Vim alignment plugin
-Plugin 'hail2u/vim-css3-syntax'         " Add CSS3 syntax support to vim's built-in `syntax/css.vim`.
+Plugin 'vim-airline/vim-airline'          " lean & mean status/tabline for vim that's light as air
+Plugin 'vim-airline/vim-airline-themes'   " A collection of themes for vim-airline
+Plugin 'scrooloose/nerdtree'              " A tree explorer plugin for vim.
+Plugin 'scrooloose/syntastic'             " Syntax checking hacks for vim
+Plugin 'tpope/vim-fugitive'               " a Git wrapper so awesome, it should be illegal
+Plugin 'tpope/vim-commentary'             " comment stuff out
+Plugin 'tpope/vim-surround'               " quoting/parenthesizing made simple
+Plugin 'tpope/vim-rails'                  " Ruby on Rails power tools
+Plugin 'tpope/vim-abolish'                " easily search for, substitute, and abbreviate multiple variants of a word
+Plugin 'tmhedberg/matchit'                " extended % matching for HTML, LaTeX, and many other languages
+Plugin 'henrik/vim-indexed-search'        " Show 'Match 123 of 456 /search term/' in Vim searches.
+Plugin 'lrvick/Conque-Shell'              " Run interactive commands inside a Vim buffer
+Plugin 'elzr/vim-json'                    " A better JSON for Vim: distinct highlighting of keywords vs values, JSON-specific (non-JS) warnings, quote concealing.
+Plugin 'sjl/gundo.vim'                    " Graph your Vim undo tree in style.
+Plugin 'terryma/vim-multiple-cursors'     " True Sublime Text style multiple selections for Vim
+Plugin 'Shougo/unite.vim'                 " Unite and create user interfaces
+Plugin 'Shougo/neomru.vim'                " MRU plugin includes unite.vim MRU sources
+Plugin 'Shougo/vimproc.vim'               " Interactive command execution in Vim.
+Plugin 'junegunn/vim-easy-align'          " A Vim alignment plugin
+Plugin 'hail2u/vim-css3-syntax'           " Add CSS3 syntax support to vim's built-in `syntax/css.vim`.
+Plugin 'mustache/vim-mustache-handlebars' " mustache and handlebars mode for vim
+Plugin 'leafgarland/typescript-vim'       " Typescript syntax files for Vim
 
 " All of your Plugins must be added before the following line
 call vundle#end()         " required
@@ -187,8 +189,8 @@ if has("gui_running")
   endif
 
   if has("gui_mac") || has("gui_macvim")
-    set guifont=Menlo:h12
-    set transparency=7
+    colorscheme railscasts
+    set guifont=Hack:h11
   endif
 
   if has("gui_win32") || has("gui_win32s")
