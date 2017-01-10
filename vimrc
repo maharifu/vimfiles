@@ -35,6 +35,9 @@ Plugin 'mustache/vim-mustache-handlebars' " mustache and handlebars mode for vim
 Plugin 'leafgarland/typescript-vim'       " Typescript syntax files for Vim
 Plugin 'godlygeek/csapprox'               " Make gvim-only colorschemes work transparently in terminal vim http://www.vim.org/scripts/script.php?script_id=2390
 Plugin 'thinca/vim-localrc'               " Enable configuration file of each directory.
+Plugin 'craigemery/vim-autotag'           " Automatically discover and 'properly' update ctags files on save
+Plugin 'vim-utils/vim-man'                " View and grep man pages in vim
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()         " required
