@@ -274,3 +274,8 @@ command W w !sudo tee % > /dev/null
 
 " For performance reasons
 set synmaxcol=200
+
+" Because K in gvim sucks
+if &runtimepath =~ 'vim-man'
+  map K <Plug>(Man)
+endif
