@@ -24,7 +24,7 @@ Plugin 'tmhedberg/matchit'                " extended % matching for HTML, LaTeX,
 Plugin 'henrik/vim-indexed-search'        " Show 'Match 123 of 456 /search term/' in Vim searches.
 Plugin 'lrvick/Conque-Shell'              " Run interactive commands inside a Vim buffer
 Plugin 'elzr/vim-json'                    " A better JSON for Vim: distinct highlighting of keywords vs values, JSON-specific (non-JS) warnings, quote concealing.
-Plugin 'sjl/gundo.vim'                    " Graph your Vim undo tree in style.
+Plugin 'mbbill/undotree'                  " The ultimate undo history visualizer for VIM
 Plugin 'terryma/vim-multiple-cursors'     " True Sublime Text style multiple selections for Vim
 Plugin 'Shougo/unite.vim'                 " Unite and create user interfaces
 Plugin 'Shougo/neomru.vim'                " MRU plugin includes unite.vim MRU sources
@@ -222,7 +222,7 @@ else
 endif
 
 " key mapping for Gundo
-nnoremap <F4> :GundoToggle<CR>
+nnoremap <F4> :UndotreeToggle<CR>
 
 silent! nmap <silent> <Leader>p :NERDTreeToggle<CR>
 let NERDTreeIgnore=['\.o$', '\~$', '\.pyc$']
