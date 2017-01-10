@@ -270,4 +270,4 @@ command Bw :bufdo bw
 command W w !sudo tee % > /dev/null
 
 " For performance reasons
-set synmaxcol=120
+set synmaxcol=200
