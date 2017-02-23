@@ -280,3 +280,11 @@ set synmaxcol=200
 if &runtimepath =~ 'vim-man'
   map K <Plug>(Man)
 endif
+
+" Undo since forever!
+if has("persistent_undo")
+  let undo = expand('$HOME/.vim.undo')
+  silent call system('mkdir -p ' . undo)
+  let &undodir = undo
+  set undofile
+endif
