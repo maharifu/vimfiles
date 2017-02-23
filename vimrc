@@ -37,7 +37,8 @@ Plugin 'godlygeek/csapprox'               " Make gvim-only colorschemes work tra
 Plugin 'thinca/vim-localrc'               " Enable configuration file of each directory.
 Plugin 'craigemery/vim-autotag'           " Automatically discover and 'properly' update ctags files on save
 Plugin 'vim-utils/vim-man'                " View and grep man pages in vim
-
+Plugin 'ekalinin/Dockerfile.vim'          " Vim syntax file & snippets for Docker's Dockerfile
+Plugin 'will133/vim-dirdiff'              " Vim plugin to diff two directories
 
 " All of your Plugins must be added before the following line
 call vundle#end()         " required
