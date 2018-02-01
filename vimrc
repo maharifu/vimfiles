@@ -39,6 +39,7 @@ Plugin 'craigemery/vim-autotag'           " Automatically discover and 'properly
 Plugin 'vim-utils/vim-man'                " View and grep man pages in vim
 Plugin 'ekalinin/Dockerfile.vim'          " Vim syntax file & snippets for Docker's Dockerfile
 Plugin 'will133/vim-dirdiff'              " Vim plugin to diff two directories
+Plugin 'fatih/vim-go'                     " Go development plugin for Vim https://patreon.com/fatih
 
 " All of your Plugins must be added before the following line
 call vundle#end()         " required
@@ -132,8 +133,6 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-" Reenable go checkers
-let g:syntastic_go_checkers = ["go"]
 
 " ============================================================================
 " EasyAlign config
