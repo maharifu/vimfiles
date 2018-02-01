@@ -133,6 +133,13 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+" Javascript
+" Hack to get syntastic to recognize eslint binary
+let g:syntastic_javascript_eslint_exec = '/bin/ls'
+" Local npm path
+let g:syntastic_javascript_eslint_exe = 'eslint_d'
+" Set linter
+let g:syntastic_javascript_checkers = ['eslint']
 
 " ============================================================================
 " EasyAlign config
