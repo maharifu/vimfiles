@@ -84,7 +84,7 @@ nnoremap <silent> <C-f> :Unite -direction=botright -no-quit grep:.<cr>
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
 call unite#custom#source('file_rec,file_rec/async,file_rec/neovim','sorters','sorter_rank')
-call unite#custom#source('file_rec,file_rec/async,file_rec/neovim', 'ignore_pattern', 'node_modules\|.sass-cache')
+call unite#custom#source('file_rec,file_rec/async,file_rec/neovim', 'ignore_pattern', 'node_modules\|.sass-cache\|vendor')
 
 if has("nvim")
   " if neovim is installed and working, use neovim's job APIs
