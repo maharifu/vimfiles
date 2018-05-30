@@ -40,10 +40,18 @@ Plugin 'vim-utils/vim-man'                " View and grep man pages in vim
 Plugin 'ekalinin/Dockerfile.vim'          " Vim syntax file & snippets for Docker's Dockerfile
 Plugin 'will133/vim-dirdiff'              " Vim plugin to diff two directories
 Plugin 'fatih/vim-go'                     " Go development plugin for Vim https://patreon.com/fatih
+Plugin 'christoomey/vim-conflicted'       " Easy git merge conflict resolution in Vim
 
 " All of your Plugins must be added before the following line
 call vundle#end()         " required
 filetype plugin indent on " load ftplugins and indent files
+
+" ============================================================================
+" Conflicted config
+"
+set stl+=%{ConflictedVersion()}
+let g:diffget_local_map = 'gl'
+let g:diffget_upstream_map = 'gu'
 
 " ============================================================================
 " localrc config
