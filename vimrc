@@ -114,19 +114,27 @@ else
   end
 end
 
-if executable('ag')
-  " ag is faster so make it default
-  let g:unite_source_grep_command = 'ag'
-  let g:unite_source_grep_default_opts =
-      \ '-i --vimgrep --hidden --ignore ' .
-      \ '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
+if executable('rg')
+  " rg is fastest so make it default
+  let g:unite_source_grep_command = 'rg'
+  let g:unite_source_grep_default_opts = '--smart-case -n --no-heading --color never --no-messages'
+  let g:unite_source_grep_separator = "" "avoid having unite add '--' where it doesn't go
   let g:unite_source_grep_recursive_opt = ''
 else
-  if executable('ack')
-    " ack is still faster than grep
-    let g:unite_source_grep_command = 'ack'
-    let g:unite_source_grep_default_opts = '--no-heading --no-color -k -H'
+  if executable('ag')
+    " ag is faster
+    let g:unite_source_grep_command = 'ag'
+    let g:unite_source_grep_default_opts =
+        \ '-i --vimgrep --hidden --ignore ' .
+        \ '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
     let g:unite_source_grep_recursive_opt = ''
+  else
+    if executable('ack')
+      " ack is still faster than grep
+      let g:unite_source_grep_command = 'ack'
+      let g:unite_source_grep_default_opts = '--no-heading --no-color -k -H'
+      let g:unite_source_grep_recursive_opt = ''
+    endif
   endif
 endif
 
