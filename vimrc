@@ -41,6 +41,7 @@ Plugin 'ekalinin/Dockerfile.vim'          " Vim syntax file & snippets for Docke
 Plugin 'will133/vim-dirdiff'              " Vim plugin to diff two directories
 Plugin 'fatih/vim-go'                     " Go development plugin for Vim https://patreon.com/fatih
 Plugin 'christoomey/vim-conflicted'       " Easy git merge conflict resolution in Vim
+Plugin 'KabbAmine/zeavim.vim'             " Zeal for Vim
 
 " All of your Plugins must be added before the following line
 call vundle#end()         " required
@@ -167,6 +168,11 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 " ============================================================================
+" Zeavim config
+"
+
+let g:zv_keep_focus = 0
+
 
 set history=1000 " store lots of :cmdline history
 
