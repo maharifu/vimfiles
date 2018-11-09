@@ -46,6 +46,17 @@ Plugin 'KabbAmine/zeavim.vim'             " Zeal for Vim
 " All of your Plugins must be added before the following line
 call vundle#end()         " required
 filetype plugin indent on " load ftplugins and indent files
+" ============================================================================
+" Vim-go
+"
+" let g:go_version_warning = 0
+
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+" let g:go_highlight_functions = 1
+" let g:go_highlight_function_calls = 1
+" let g:go_highlight_operators = 1
+" let g:go_highlight_extra_types = 1
 
 " ============================================================================
 " Conflicted config
