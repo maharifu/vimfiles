@@ -296,10 +296,10 @@ nnoremap <Leader><Tab> :tabnew<CR>
 autocmd BufRead,BufNewFile *.axlsx set filetype=ruby
 
 " Close all buffers
-command Bw :bufdo bw
+command! Bw :bufdo bw
 
 " Save as root
-command W w !sudo tee % > /dev/null
+command! W w !sudo tee % > /dev/null
 
 " For performance reasons
 set synmaxcol=200
@@ -316,3 +316,6 @@ if has("persistent_undo")
   let &undodir = undo
   set undofile
 endif
+
+" more powerful backspacing
+set backspace=indent,eol,start
