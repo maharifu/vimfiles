@@ -14,7 +14,7 @@ Plugin 'gmarik/Vundle.vim'                " the plug-in manager for Vim
 Plugin 'vim-airline/vim-airline'          " lean & mean status/tabline for vim that's light as air
 Plugin 'vim-airline/vim-airline-themes'   " A collection of themes for vim-airline
 Plugin 'scrooloose/nerdtree'              " A tree explorer plugin for vim.
-Plugin 'scrooloose/syntastic'             " Syntax checking hacks for vim
+Plugin 'w0rp/ale'                         " Asynchronous linting/fixing for Vim and Language Server Protocol (LSP) integration
 Plugin 'tpope/vim-fugitive'               " a Git wrapper so awesome, it should be illegal
 Plugin 'tpope/vim-commentary'             " comment stuff out
 Plugin 'tpope/vim-surround'               " quoting/parenthesizing made simple
@@ -152,23 +152,24 @@ else
 endif
 
 " ============================================================================
-" Syntastic config
+" ALE config
 "
+let g:ale_fix_on_save = 1
 
-let g:syntastic_enable_signs = 1 " mark syntax errors with :signs
+" Error and warning signs.
+let g:ale_sign_error = '⤫'
+let g:ale_sign_warning = '⚠'
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+" Enable integration with airline.
+let g:airline#extensions#ale#enabled = 1
 
-" Javascript
-" Hack to get syntastic to recognize eslint binary
-let g:syntastic_javascript_eslint_exec = '/bin/ls'
-" Local npm path
-let g:syntastic_javascript_eslint_exe = 'eslint_d'
-" Set linter
-let g:syntastic_javascript_checkers = ['eslint']
+let g:ale_javascript_eslint_use_global = 1
+let g:ale_javascript_eslint_executable = 'eslint_d'
+let g:ale_linters = {'javascript': ['eslint']}
+let g:ale_fixers = {'go': ['goimports']}
+
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 " ============================================================================
 " EasyAlign config
