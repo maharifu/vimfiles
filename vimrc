@@ -8,6 +8,9 @@ filetype off     " required
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
+" Force python3 to be active
+let g:ignore_me = has('python3')
+
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'                " the plug-in manager for Vim
 
@@ -25,9 +28,8 @@ Plugin 'tmhedberg/matchit'                " extended % matching for HTML, LaTeX,
 Plugin 'henrik/vim-indexed-search'        " Show 'Match 123 of 456 /search term/' in Vim searches.
 Plugin 'elzr/vim-json'                    " A better JSON for Vim: distinct highlighting of keywords vs values, JSON-specific (non-JS) warnings, quote concealing.
 Plugin 'mbbill/undotree'                  " The ultimate undo history visualizer for VIM
-Plugin 'Shougo/unite.vim'                 " Unite and create user interfaces
+Plugin 'Shougo/denite.nvim'               " Dark powered asynchronous unite all interfaces for Neovim/Vim8
 Plugin 'Shougo/neomru.vim'                " MRU plugin includes unite.vim MRU sources
-Plugin 'Shougo/vimproc.vim'               " Interactive command execution in Vim.
 Plugin 'junegunn/vim-easy-align'          " A Vim alignment plugin
 Plugin 'hail2u/vim-css3-syntax'           " Add CSS3 syntax support to vim's built-in `syntax/css.vim`.
 Plugin 'mustache/vim-mustache-handlebars' " mustache and handlebars mode for vim
@@ -94,61 +96,35 @@ set laststatus=2
 " ============================================================================
 " Unite config
 "
-
-nnoremap <silent> <Leader>m :Unite -direction=botright -buffer-name=recent
-                                 \ -winheight=10 file_mru<cr>
-nnoremap <silent> <C-b> :Unite -direction=botright -buffer-name=buffers
-                                 \ -winheight=10 buffer<cr>
-nnoremap <silent> <C-f> :Unite -direction=botright -no-quit grep:.<cr>
+nnoremap <silent> <C-m> :Denite -direction=botright -buffer-name=recent
+      \ -winheight=10 file_mru<cr>
+nnoremap <silent> <C-b> :Denite -direction=botright -buffer-name=buffers
+      \ -winheight=10 buffer<cr>
+nnoremap <silent> <C-p> :Denite -direction=botright -buffer-name=files
+      \ -winheight=10 file_rec<cr>
+nnoremap <silent> <C-f> :Denite -direction=botright grep:.<cr>
 
 " CtrlP search
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#filters#sorter_default#use(['sorter_rank'])
-call unite#custom#source('file_rec,file_rec/async,file_rec/neovim','sorters','sorter_rank')
-call unite#custom#source('file_rec,file_rec/async,file_rec/neovim', 'ignore_pattern', 'node_modules\|.sass-cache\|vendor')
+call denite#custom#filter('matcher/ignore_globs', 'ignore_globs',
+      \ [ '.git/', '.ropeproject/', '__pycache__/',
+      \ 'venv/', 'images/', '*.min.*', 'img/', 'fonts/',
+      \ 'node_modules', '.sass-cache', 'vendor'])
 
-if has("nvim")
-  " if neovim is installed and working, use neovim's job APIs
-  nnoremap <silent> <C-p> :Unite -direction=botright -start-insert
-                               \ -buffer-name=files -winheight=10
-                               \ file_rec/neovim<cr>
-else
-  " replacing unite with ctrl-p
-  " check for vimproc, silence 'missing DLL error'
-  silent! if unite#util#has_vimproc()
-    " if vimproc is installed and working, use async
-    nnoremap <silent> <C-p> :Unite -direction=botright -start-insert
-                                 \ -buffer-name=files -winheight=10
-                                 \ file_rec/async<cr>
-  else
-    " else, use normal call
-    nnoremap <silent> <C-p> :Unite -direction=botright -start-insert
-                                 \ -buffer-name=files -winheight=10 file_rec<cr>
-  end
-end
+call denite#custom#map('insert', '<Down>', '<denite:move_to_next_line>', 'noremap')
+call denite#custom#map('insert', '<Up>', '<denite:move_to_previous_line>', 'noremap')
 
 if executable('rg')
   " rg is fastest so make it default
-  let g:unite_source_grep_command = 'rg'
-  let g:unite_source_grep_default_opts = '--smart-case -n --no-heading --color never --no-messages'
-  let g:unite_source_grep_separator = "" "avoid having unite add '--' where it doesn't go
-  let g:unite_source_grep_recursive_opt = ''
-else
-  if executable('ag')
-    " ag is faster
-    let g:unite_source_grep_command = 'ag'
-    let g:unite_source_grep_default_opts =
-        \ '-i --vimgrep --hidden --ignore ' .
-        \ '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
-    let g:unite_source_grep_recursive_opt = ''
-  else
-    if executable('ack')
-      " ack is still faster than grep
-      let g:unite_source_grep_command = 'ack'
-      let g:unite_source_grep_default_opts = '--no-heading --no-color -k -H'
-      let g:unite_source_grep_recursive_opt = ''
-    endif
-  endif
+  call denite#custom#var('file_rec', 'command',
+        \ ['rg', '--files', '--glob', '!.git'])
+
+  call denite#custom#var('grep', 'command', ['rg'])
+  call denite#custom#var('grep', 'default_opts',
+        \ ['--vimgrep', '--no-heading'])
+  call denite#custom#var('grep', 'recursive_opts', [])
+  call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
+  call denite#custom#var('grep', 'separator', ['--'])
+  call denite#custom#var('grep', 'final_opts', [])
 endif
 
 " ============================================================================
