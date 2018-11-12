@@ -14,6 +14,7 @@ Plugin 'gmarik/Vundle.vim'                " the plug-in manager for Vim
 Plugin 'vim-airline/vim-airline'          " lean & mean status/tabline for vim that's light as air
 Plugin 'vim-airline/vim-airline-themes'   " A collection of themes for vim-airline
 Plugin 'scrooloose/nerdtree'              " A tree explorer plugin for vim.
+Plugin 'Xuyuanp/nerdtree-git-plugin'      " A plugin of NERDTree showing git status
 Plugin 'w0rp/ale'                         " Asynchronous linting/fixing for Vim and Language Server Protocol (LSP) integration
 Plugin 'tpope/vim-fugitive'               " a Git wrapper so awesome, it should be illegal
 Plugin 'tpope/vim-commentary'             " comment stuff out
@@ -22,10 +23,8 @@ Plugin 'tpope/vim-rails'                  " Ruby on Rails power tools
 Plugin 'tpope/vim-abolish'                " easily search for, substitute, and abbreviate multiple variants of a word
 Plugin 'tmhedberg/matchit'                " extended % matching for HTML, LaTeX, and many other languages
 Plugin 'henrik/vim-indexed-search'        " Show 'Match 123 of 456 /search term/' in Vim searches.
-Plugin 'lrvick/Conque-Shell'              " Run interactive commands inside a Vim buffer
 Plugin 'elzr/vim-json'                    " A better JSON for Vim: distinct highlighting of keywords vs values, JSON-specific (non-JS) warnings, quote concealing.
 Plugin 'mbbill/undotree'                  " The ultimate undo history visualizer for VIM
-Plugin 'terryma/vim-multiple-cursors'     " True Sublime Text style multiple selections for Vim
 Plugin 'Shougo/unite.vim'                 " Unite and create user interfaces
 Plugin 'Shougo/neomru.vim'                " MRU plugin includes unite.vim MRU sources
 Plugin 'Shougo/vimproc.vim'               " Interactive command execution in Vim.
@@ -43,6 +42,7 @@ Plugin 'fatih/vim-go'                     " Go development plugin for Vim https:
 Plugin 'christoomey/vim-conflicted'       " Easy git merge conflict resolution in Vim
 Plugin 'ciaranm/detectindent'             " Vim script for automatically detecting indent settings
 Plugin 'KabbAmine/zeavim.vim'             " Zeal for Vim
+Plugin 'ivy/vim-ginkgo'                   " Go syntax highlighting and snippets for Ginkgo specs and matchers. https://github.com/ivy/vim-ginkgo
 
 " All of your Plugins must be added before the following line
 call vundle#end()         " required
