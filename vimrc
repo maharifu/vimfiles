@@ -42,7 +42,6 @@ Plugin 'ekalinin/Dockerfile.vim'          " Vim syntax file & snippets for Docke
 Plugin 'will133/vim-dirdiff'              " Vim plugin to diff two directories
 Plugin 'fatih/vim-go'                     " Go development plugin for Vim https://patreon.com/fatih
 Plugin 'christoomey/vim-conflicted'       " Easy git merge conflict resolution in Vim
-Plugin 'ciaranm/detectindent'             " Vim script for automatically detecting indent settings
 Plugin 'KabbAmine/zeavim.vim'             " Zeal for Vim
 Plugin 'ivy/vim-ginkgo'                   " Go syntax highlighting and snippets for Ginkgo specs and matchers. https://github.com/ivy/vim-ginkgo
 
@@ -161,12 +160,6 @@ nmap ga <Plug>(EasyAlign)
 "
 
 let g:zv_keep_focus = 0
-
-" ============================================================================
-" DetectIndent config
-autocmd BufReadPost * :DetectIndent
-let g:detectindent_preferred_expandtab = 0
-let g:detectindent_preferred_indent = 4
 
 " ============================================================================
 
