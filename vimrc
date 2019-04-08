@@ -29,6 +29,8 @@ Plugin 'henrik/vim-indexed-search'        " Show 'Match 123 of 456 /search term/
 Plugin 'elzr/vim-json'                    " A better JSON for Vim: distinct highlighting of keywords vs values, JSON-specific (non-JS) warnings, quote concealing.
 Plugin 'mbbill/undotree'                  " The ultimate undo history visualizer for VIM
 Plugin 'Shougo/denite.nvim'               " Dark powered asynchronous unite all interfaces for Neovim/Vim8
+Plugin 'roxma/nvim-yarp'                  " Yet Another Remote Plugin Framework for Neovim
+Plugin 'roxma/vim-hug-neovim-rpc'         " EXPERIMENTAL
 Plugin 'Shougo/neomru.vim'                " MRU plugin includes unite.vim MRU sources
 Plugin 'junegunn/vim-easy-align'          " A Vim alignment plugin
 Plugin 'hail2u/vim-css3-syntax'           " Add CSS3 syntax support to vim's built-in `syntax/css.vim`.
@@ -100,7 +102,7 @@ nnoremap <silent> <C-m> :Denite -direction=botright -buffer-name=recent
 nnoremap <silent> <C-b> :Denite -direction=botright -buffer-name=buffers
       \ -winheight=10 buffer<cr>
 nnoremap <silent> <C-p> :Denite -direction=botright -buffer-name=files
-      \ -winheight=10 file_rec<cr>
+      \ -winheight=10 file/rec<cr>
 nnoremap <silent> <C-f> :Denite -direction=botright grep:.<cr>
 
 " CtrlP search
@@ -114,7 +116,7 @@ call denite#custom#map('insert', '<Up>', '<denite:move_to_previous_line>', 'nore
 
 if executable('rg')
   " rg is fastest so make it default
-  call denite#custom#var('file_rec', 'command',
+  call denite#custom#var('file/rec', 'command',
         \ ['rg', '--files', '--glob', '!.git'])
 
   call denite#custom#var('grep', 'command', ['rg'])
@@ -262,21 +264,8 @@ highlight ColorColumn ctermbg=8 guibg=grey
 " more syntax highlighting for python
 let python_hightlight_all = 1
 
-" key mapping for exiting terminal (Neovim)
-if has("nvim")
-  tmap <Esc> <C-\><C-N>
-else
-  " if not neovim set :term to use Conque
-  cabbrev term ConqueTerm bash
-endif
-
-" Disable syntastic on LaTeX files
-let g:syntastic_mode_map = {
-    \ 'mode': 'active',
-    \ 'active_filetypes': [],
-    \ 'passive_filetypes': ['tex', 'plaintex'] }
 " Quick mode toggle
-nnoremap <C-w>E :SyntasticToggleMode<CR>
+nnoremap <C-w>E :ALEToggle<CR>
 
 " Open new tabs quicker
 nnoremap <Leader><Tab> :tabnew<CR>
@@ -306,5 +295,8 @@ if has("persistent_undo")
   set undofile
 endif
 
-" more powerful backspacing
+" More powerful backspacing
 set backspace=indent,eol,start
+
+" Enable bracketed paste mode
+set t_BE=
