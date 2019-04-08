@@ -23,16 +23,11 @@ Usage
 
 4. Install the Powerline fonts
 
-  `$ mkdir $HOME/.fonts`
-  `$ ln -s $HOME/.vim/fonts/*.otf $HOME/.fonts/`
+  `$ mkdir $HOME/.fonts; ln -s $HOME/.vim/fonts/*.otf $HOME/.fonts/`
 
-5. (optional) Compile vimproc
+5. Install denite python dependencies
 
-  Everything works fine without vimproc, however, you should install it so
-  unite can use 'async' methods. This increases performance when searching for
-  files in directories with a large number of files.
-
-  `$ cd $HOME/.vim/bundle/vimproc.vim; make -f make_unix.mak`
+  `pip3 install --user pynvim`
 
 Caveat Emptor
 -------------
