@@ -9,7 +9,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " Force python3 to be active
-let g:ignore_me = has('python3')
+set pyx=3
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'                " the plug-in manager for Vim
