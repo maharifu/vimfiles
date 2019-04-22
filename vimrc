@@ -10,6 +10,7 @@ call vundle#begin()
 
 " Force python3 to be active
 set pyx=3
+let g:ignore_me = has('python3')
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'                " the plug-in manager for Vim
