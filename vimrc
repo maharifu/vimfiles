@@ -103,7 +103,7 @@ nnoremap <silent> <C-m> :Denite -direction=botright -buffer-name=recent
 nnoremap <silent> <C-b> :Denite -direction=botright -buffer-name=buffers
       \ -winheight=10 buffer<cr>
 nnoremap <silent> <C-p> :Denite -direction=botright -buffer-name=files
-      \ -winheight=10 file/rec<cr>
+      \ -start-filter -winheight=10 file/rec<cr>
 nnoremap <silent> <C-f> :Denite -direction=botright grep:.<cr>
 
 " CtrlP search
@@ -114,6 +114,22 @@ call denite#custom#filter('matcher/ignore_globs', 'ignore_globs',
 
 call denite#custom#map('insert', '<Down>', '<denite:move_to_next_line>', 'noremap')
 call denite#custom#map('insert', '<Up>', '<denite:move_to_previous_line>', 'noremap')
+
+autocmd FileType denite call s:denite_my_settings()
+function! s:denite_my_settings() abort
+  nnoremap <silent><buffer><expr> <CR>
+        \ denite#do_map('do_action')
+  nnoremap <silent><buffer><expr> d
+        \ denite#do_map('do_action', 'delete')
+  nnoremap <silent><buffer><expr> p
+        \ denite#do_map('do_action', 'preview')
+  nnoremap <silent><buffer><expr> q
+        \ denite#do_map('quit')
+  nnoremap <silent><buffer><expr> i
+        \ denite#do_map('open_filter_buffer')
+  nnoremap <silent><buffer><expr> <Space>
+        \ denite#do_map('toggle_select').'j'
+endfunction
 
 if executable('rg')
   " rg is fastest so make it default
@@ -339,3 +355,6 @@ if $TMUX != ''
   nnoremap <silent> <c-w><left> :silent call TmuxMove('h')<cr>
   nnoremap <silent> <c-w><right> :silent call TmuxMove('l')<cr>
 endif
+
+" Disable modeline
+set nomodeline
