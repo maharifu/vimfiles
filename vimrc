@@ -47,6 +47,7 @@ Plugin 'fatih/vim-go'                     " Go development plugin for Vim https:
 Plugin 'christoomey/vim-conflicted'       " Easy git merge conflict resolution in Vim
 Plugin 'KabbAmine/zeavim.vim'             " Zeal for Vim
 Plugin 'ivy/vim-ginkgo'                   " Go syntax highlighting and snippets for Ginkgo specs and matchers. https://github.com/ivy/vim-ginkgo
+Plugin 'hashivim/vim-terraform'           " basic vim/terraform integration http://hashivim.github.io/vim-terraform
 
 " All of your Plugins must be added before the following line
 call vundle#end()         " required
@@ -179,6 +180,12 @@ nmap ga <Plug>(EasyAlign)
 "
 
 let g:zv_keep_focus = 0
+
+" ============================================================================
+" vim-terraform config
+"
+
+let g:terraform_fmt_on_save = 1
 
 " ============================================================================
 
