@@ -48,6 +48,7 @@ Plugin 'christoomey/vim-conflicted'       " Easy git merge conflict resolution i
 Plugin 'KabbAmine/zeavim.vim'             " Zeal for Vim
 Plugin 'ivy/vim-ginkgo'                   " Go syntax highlighting and snippets for Ginkgo specs and matchers. https://github.com/ivy/vim-ginkgo
 Plugin 'hashivim/vim-terraform'           " basic vim/terraform integration http://hashivim.github.io/vim-terraform
+Plugin 'rhysd/clever-f.vim'               " Extended f, F, t and T key mappings for Vim. https://rhysd.github.io/clever-f.vim
 
 " All of your Plugins must be added before the following line
 call vundle#end()         " required
