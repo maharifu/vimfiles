@@ -97,6 +97,9 @@ let g:airline_symbols.branch   = '⭠'
 let g:airline_symbols.readonly = '⭤'
 let g:airline_symbols.linenr   = '⭡'
 
+" Enable integration with airline.
+let g:airline#extensions#ale#enabled = 1
+
 " required so the status bar actually shows
 set laststatus=2
 
@@ -158,9 +161,6 @@ let g:ale_fix_on_save = 1
 " Error and warning signs.
 let g:ale_sign_error = '⤫'
 let g:ale_sign_warning = '⚠'
-
-" Enable integration with airline.
-let g:airline#extensions#ale#enabled = 1
 
 let g:ale_javascript_eslint_use_global = 1
 let g:ale_javascript_eslint_executable = 'eslint_d'
