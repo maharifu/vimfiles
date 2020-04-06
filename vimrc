@@ -166,8 +166,9 @@ let g:ale_javascript_eslint_use_global = 1
 let g:ale_javascript_eslint_executable = 'eslint_d'
 " Keep golint because golangci-lint ignores some results of golint
 " see: https://github.com/golangci/golangci-lint#command-line-options
-let g:ale_linters = {'javascript': ['eslint'], 'go': ['golangci-lint', 'golint']}
+let g:ale_linters = {'javascript': ['eslint'], 'go': ['golangci-lint']}
 let g:ale_fixers = {'go': ['goimports']}
+let g:ale_go_golangci_lint_options = '--fast --exclude-use-default=false'
 let g:ale_go_golangci_lint_package = 1
 
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
