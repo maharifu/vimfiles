@@ -49,6 +49,7 @@ Plugin 'KabbAmine/zeavim.vim'             " Zeal for Vim
 Plugin 'ivy/vim-ginkgo'                   " Go syntax highlighting and snippets for Ginkgo specs and matchers. https://github.com/ivy/vim-ginkgo
 Plugin 'hashivim/vim-terraform'           " basic vim/terraform integration http://hashivim.github.io/vim-terraform
 Plugin 'rhysd/clever-f.vim'               " Extended f, F, t and T key mappings for Vim. https://rhysd.github.io/clever-f.vim
+Plugin 'rust-lang/rust.vim'               " Vim configuration for Rust.
 
 " All of your Plugins must be added before the following line
 call vundle#end()         " required
@@ -67,6 +68,12 @@ let g:go_highlight_extra_types = 1
 
 " Disable gopls
 let g:go_gopls_enabled = 0
+
+" ============================================================================
+" rust.vim
+"
+
+let g:rustfmt_autosave = 1
 
 " ============================================================================
 " Conflicted config
