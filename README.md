@@ -11,7 +11,7 @@ Usage
 
 1. Clone the repo to $HOME/.vim
 
-  `$ git clone git://github.com/maharifu/vimfiles.git $HOME/.vim --recursive`
+  `$ git clone git@github.com:maharifu/vimfiles.git $HOME/.vim --recursive`
 
 2. Create a .vimrc file
 
@@ -27,13 +27,7 @@ Usage
 
 5. Install denite python dependencies
 
-  `pip3 install --user pynvim`
-
-Caveat Emptor
--------------
-
-I only tested this on my own PC, running Arch Linux, VIM 7.4, and never on any
-major holiday, so use at your own risk!
+  `$ pip3 install --user pynvim`
 
 Credits
 -------
