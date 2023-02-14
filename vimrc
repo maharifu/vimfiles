@@ -174,6 +174,8 @@ let g:ale_linters = {'javascript': ['eslint'], 'go': ['golangci-lint']}
 let g:ale_fixers = {'go': ['goimports']}
 let g:ale_go_golangci_lint_options = '--fast --exclude-use-default=false'
 let g:ale_go_golangci_lint_package = 1
+" Disable virtualtext - comment-style text on errors or warnings
+let g:ale_virtualtext_cursor = 0
 
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
