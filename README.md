@@ -1,7 +1,7 @@
 Vimfiles
 ========
 
-My .vim directory redone from scratch, using Vundle.
+My .vim directory redone from scratch, using [vim-plug](https://github.com/junegunn/vim-plug).
 Old version is still available [here](https://github.com/maharifu/vimfiles-old).
 
 See vimrc for plugins used.
@@ -17,17 +17,15 @@ Usage
 
   `$ echo "source $HOME/.vim/vimrc" > $HOME/.vimrc`
 
-3. Run vim with Vundle to install missing plugins
-
-  `$ vim +PluginInstall +qall`
-
-4. Install the Powerline fonts
+3. Install the Powerline fonts
 
   `$ mkdir $HOME/.fonts; ln -s $HOME/.vim/fonts/*.otf $HOME/.fonts/`
 
-5. Install denite python dependencies
+4. Install denite python dependencies
 
   `$ pip3 install --user pynvim`
+
+vim-plug and all plugins will be automatically installed on the first run.
 
 Credits
 -------

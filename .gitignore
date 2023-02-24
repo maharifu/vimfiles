@@ -16,6 +16,6 @@ tags
 *.[t]bz2
 tmp/
 log/
-bundle/*
-!bundle/Vundle.vim
 shada
+plugged
+autoload

@@ -1,59 +1,61 @@
 " ============================================================================
-" Vundle init and config
+" Plugins init and config
 "
 set nocompatible " be iMproved, required
 filetype off     " required
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
 
 " Force python3 to be active
 set pyx=3
 let g:ignore_me = has('python3')
 
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'                " the plug-in manager for Vim
+" Install vim-plug if missing
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
-Plugin 'vim-airline/vim-airline'          " lean & mean status/tabline for vim that's light as air
-Plugin 'vim-airline/vim-airline-themes'   " A collection of themes for vim-airline
-Plugin 'scrooloose/nerdtree'              " A tree explorer plugin for vim.
-Plugin 'Xuyuanp/nerdtree-git-plugin'      " A plugin of NERDTree showing git status
-Plugin 'w0rp/ale'                         " Asynchronous linting/fixing for Vim and Language Server Protocol (LSP) integration
-Plugin 'tpope/vim-fugitive'               " a Git wrapper so awesome, it should be illegal
-Plugin 'tpope/vim-commentary'             " comment stuff out
-Plugin 'tpope/vim-surround'               " quoting/parenthesizing made simple
-Plugin 'tpope/vim-rails'                  " Ruby on Rails power tools
-Plugin 'tpope/vim-abolish'                " easily search for, substitute, and abbreviate multiple variants of a word
-Plugin 'tmhedberg/matchit'                " extended % matching for HTML, LaTeX, and many other languages
-Plugin 'henrik/vim-indexed-search'        " Show 'Match 123 of 456 /search term/' in Vim searches.
-Plugin 'elzr/vim-json'                    " A better JSON for Vim: distinct highlighting of keywords vs values, JSON-specific (non-JS) warnings, quote concealing.
-Plugin 'mbbill/undotree'                  " The ultimate undo history visualizer for VIM
-Plugin 'Shougo/denite.nvim'               " Dark powered asynchronous unite all interfaces for Neovim/Vim8
-Plugin 'roxma/nvim-yarp'                  " Yet Another Remote Plugin Framework for Neovim
-Plugin 'roxma/vim-hug-neovim-rpc'         " EXPERIMENTAL
-Plugin 'Shougo/neomru.vim'                " MRU plugin includes unite.vim MRU sources
-Plugin 'junegunn/vim-easy-align'          " A Vim alignment plugin
-Plugin 'hail2u/vim-css3-syntax'           " Add CSS3 syntax support to vim's built-in `syntax/css.vim`.
-Plugin 'mustache/vim-mustache-handlebars' " mustache and handlebars mode for vim
-Plugin 'leafgarland/typescript-vim'       " Typescript syntax files for Vim
-Plugin 'godlygeek/csapprox'               " Make gvim-only colorschemes work transparently in terminal vim http://www.vim.org/scripts/script.php?script_id=2390
-Plugin 'thinca/vim-localrc'               " Enable configuration file of each directory.
-Plugin 'craigemery/vim-autotag'           " Automatically discover and 'properly' update ctags files on save
-Plugin 'vim-utils/vim-man'                " View and grep man pages in vim
-Plugin 'ekalinin/Dockerfile.vim'          " Vim syntax file & snippets for Docker's Dockerfile
-Plugin 'will133/vim-dirdiff'              " Vim plugin to diff two directories
-Plugin 'fatih/vim-go'                     " Go development plugin for Vim https://patreon.com/fatih
-Plugin 'christoomey/vim-conflicted'       " Easy git merge conflict resolution in Vim
-Plugin 'KabbAmine/zeavim.vim'             " Zeal for Vim
-Plugin 'ivy/vim-ginkgo'                   " Go syntax highlighting and snippets for Ginkgo specs and matchers. https://github.com/ivy/vim-ginkgo
-Plugin 'hashivim/vim-terraform'           " basic vim/terraform integration http://hashivim.github.io/vim-terraform
-Plugin 'rhysd/clever-f.vim'               " Extended f, F, t and T key mappings for Vim. https://rhysd.github.io/clever-f.vim
-Plugin 'rust-lang/rust.vim'               " Vim configuration for Rust.
+call plug#begin('~/.vim/plugged')
+
+Plug 'vim-airline/vim-airline'          " lean & mean status/tabline for vim that's light as air
+Plug 'vim-airline/vim-airline-themes'   " A collection of themes for vim-airline
+Plug 'scrooloose/nerdtree'              " A tree explorer plugin for vim.
+Plug 'Xuyuanp/nerdtree-git-plugin'      " A plugin of NERDTree showing git status
+Plug 'w0rp/ale'                         " Asynchronous linting/fixing for Vim and Language Server Protocol (LSP) integration
+Plug 'tpope/vim-fugitive'               " a Git wrapper so awesome, it should be illegal
+Plug 'tpope/vim-commentary'             " comment stuff out
+Plug 'tpope/vim-surround'               " quoting/parenthesizing made simple
+Plug 'tpope/vim-rails'                  " Ruby on Rails power tools
+Plug 'tpope/vim-abolish'                " easily search for, substitute, and abbreviate multiple variants of a word
+Plug 'tmhedberg/matchit'                " extended % matching for HTML, LaTeX, and many other languages
+Plug 'henrik/vim-indexed-search'        " Show 'Match 123 of 456 /search term/' in Vim searches.
+Plug 'elzr/vim-json'                    " A better JSON for Vim: distinct highlighting of keywords vs values, JSON-specific (non-JS) warnings, quote concealing.
+Plug 'mbbill/undotree'                  " The ultimate undo history visualizer for VIM
+Plug 'Shougo/denite.nvim'               " Dark powered asynchronous unite all interfaces for Neovim/Vim8
+Plug 'roxma/nvim-yarp'                  " Yet Another Remote Plugin Framework for Neovim
+Plug 'roxma/vim-hug-neovim-rpc'         " EXPERIMENTAL
+Plug 'Shougo/neomru.vim'                " MRU plugin includes unite.vim MRU sources
+Plug 'junegunn/vim-easy-align'          " A Vim alignment plugin
+Plug 'hail2u/vim-css3-syntax'           " Add CSS3 syntax support to vim's built-in `syntax/css.vim`.
+Plug 'mustache/vim-mustache-handlebars' " mustache and handlebars mode for vim
+Plug 'leafgarland/typescript-vim'       " Typescript syntax files for Vim
+Plug 'godlygeek/csapprox'               " Make gvim-only colorschemes work transparently in terminal vim http://www.vim.org/scripts/script.php?script_id=2390
+Plug 'thinca/vim-localrc'               " Enable configuration file of each directory.
+Plug 'craigemery/vim-autotag'           " Automatically discover and 'properly' update ctags files on save
+Plug 'vim-utils/vim-man'                " View and grep man pages in vim
+Plug 'ekalinin/Dockerfile.vim'          " Vim syntax file & snippets for Docker's Dockerfile
+Plug 'will133/vim-dirdiff'              " Vim plugin to diff two directories
+Plug 'fatih/vim-go'                     " Go development plugin for Vim https://patreon.com/fatih
+Plug 'christoomey/vim-conflicted'       " Easy git merge conflict resolution in Vim
+Plug 'KabbAmine/zeavim.vim'             " Zeal for Vim
+Plug 'ivy/vim-ginkgo'                   " Go syntax highlighting and snippets for Ginkgo specs and matchers. https://github.com/ivy/vim-ginkgo
+Plug 'hashivim/vim-terraform'           " basic vim/terraform integration http://hashivim.github.io/vim-terraform
+Plug 'rhysd/clever-f.vim'               " Extended f, F, t and T key mappings for Vim. https://rhysd.github.io/clever-f.vim
+Plug 'rust-lang/rust.vim'               " Vim configuration for Rust.
 
 " All of your Plugins must be added before the following line
-call vundle#end()         " required
-filetype plugin indent on " load ftplugins and indent files
+call plug#end()
+
 " ============================================================================
 " Vim-go
 "
