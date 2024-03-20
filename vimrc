@@ -122,6 +122,7 @@ nnoremap <silent> <C-b> :Denite -direction=botright -buffer-name=buffers
 nnoremap <silent> <C-p> :Denite -direction=botright -buffer-name=files
       \ -start-filter -winheight=10 file/rec<cr>
 nnoremap <silent> <C-f> :Denite -direction=botright grep:.<cr>
+nnoremap <expr> <C-g> ':Denite -direction=botright -input='.expand('<cword>').' grep:.<cr>'
 
 " CtrlP search
 call denite#custom#filter('matcher/ignore_globs', 'ignore_globs',
