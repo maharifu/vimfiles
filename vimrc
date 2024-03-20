@@ -45,7 +45,8 @@ Plug 'craigemery/vim-autotag'           " Automatically discover and 'properly' 
 Plug 'vim-utils/vim-man'                " View and grep man pages in vim
 Plug 'ekalinin/Dockerfile.vim'          " Vim syntax file & snippets for Docker's Dockerfile
 Plug 'will133/vim-dirdiff'              " Vim plugin to diff two directories
-Plug 'fatih/vim-go'                     " Go development plugin for Vim https://patreon.com/fatih
+Plug 'fatih/vim-go',                    " Go development plugin for Vim https://patreon.com/fatih
+    \ { 'do': ':GoUpdateBinaries' }
 Plug 'christoomey/vim-conflicted'       " Easy git merge conflict resolution in Vim
 Plug 'KabbAmine/zeavim.vim'             " Zeal for Vim
 Plug 'ivy/vim-ginkgo'                   " Go syntax highlighting and snippets for Ginkgo specs and matchers. https://github.com/ivy/vim-ginkgo
