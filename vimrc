@@ -178,7 +178,6 @@ let g:ale_javascript_eslint_executable = 'eslint_d'
 " see: https://github.com/golangci/golangci-lint#command-line-options
 let g:ale_linters = {'javascript': ['eslint'], 'go': ['golangci-lint']}
 let g:ale_fixers = {'go': ['goimports']}
-let g:ale_go_golangci_lint_options = '--fast --exclude-use-default=false'
 let g:ale_go_golangci_lint_package = 1
 " Disable virtualtext - comment-style text on errors or warnings
 let g:ale_virtualtext_cursor = 0
