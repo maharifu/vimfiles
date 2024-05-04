@@ -53,9 +53,12 @@ Plug 'ivy/vim-ginkgo'                   " Go syntax highlighting and snippets fo
 Plug 'hashivim/vim-terraform'           " basic vim/terraform integration http://hashivim.github.io/vim-terraform
 Plug 'rhysd/clever-f.vim'               " Extended f, F, t and T key mappings for Vim. https://rhysd.github.io/clever-f.vim
 Plug 'rust-lang/rust.vim'               " Vim configuration for Rust.
+Plug 'ervandew/supertab'                " Perform all your vim insert mode completions with Tab
 
 " All of your Plugins must be added before the following line
 call plug#end()
+
+let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 
 " ============================================================================
 " Vim-go
@@ -70,6 +73,8 @@ let g:go_highlight_operators = 1
 let g:go_highlight_extra_types = 1
 
 let g:go_build_tags = 'gopls'
+" disable preview window
+set completeopt-=preview
 
 " ============================================================================
 " rust.vim
