@@ -76,6 +76,10 @@ let g:go_build_tags = 'gopls'
 " disable preview window
 set completeopt-=preview
 
+let g:go_list_height = 10
+
+nnoremap <silent> <Leader>i :GoImplements<cr> :lopen<cr>
+
 " ============================================================================
 " rust.vim
 "
@@ -120,14 +124,17 @@ set laststatus=2
 " ============================================================================
 " Unite config
 "
-nnoremap <silent> <C-m> :Denite -direction=botright -buffer-name=recent
-      \ -winheight=10 file_mru<cr>
+" nnoremap <silent> <C-m> :Denite -direction=botright -buffer-name=recent
+"       \ -winheight=10 file_mru<cr>
 nnoremap <silent> <C-b> :Denite -direction=botright -buffer-name=buffers
       \ -winheight=10 buffer<cr>
 nnoremap <silent> <C-p> :Denite -direction=botright -buffer-name=files
       \ -start-filter -winheight=10 file/rec<cr>
 nnoremap <silent> <C-f> :Denite -direction=botright grep:.<cr>
 nnoremap <expr> <C-g> ':Denite -direction=botright -input='.expand('<cword>').' grep:.<cr>'
+
+" Unmap Denite's default enter action
+" unmap <CR>
 
 " CtrlP search
 call denite#custom#filter('matcher/ignore_globs', 'ignore_globs',
@@ -181,7 +188,7 @@ let g:ale_javascript_eslint_use_global = 1
 let g:ale_javascript_eslint_executable = 'eslint_d'
 " Keep golint because golangci-lint ignores some results of golint
 " see: https://github.com/golangci/golangci-lint#command-line-options
-let g:ale_linters = {'javascript': ['eslint'], 'go': ['golangci-lint']}
+let g:ale_linters = {'javascript': ['eslint'], 'go': ['golangci-lint'],'proto': ['protolint']}
 let g:ale_fixers = {'go': ['goimports']}
 let g:ale_go_golangci_lint_package = 1
 " Disable virtualtext - comment-style text on errors or warnings
