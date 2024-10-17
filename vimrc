@@ -2,7 +2,11 @@
 " Plugins init and config
 "
 set nocompatible " be iMproved, required
-filetype off     " required
+" filetype off     " required
+" enable filetype detection:
+filetype on
+filetype plugin on
+filetype indent on " file type based indentation
 
 " Force python3 to be active
 set pyx=3
