@@ -190,9 +190,10 @@ let g:ale_sign_warning = '⚠'
 
 let g:ale_javascript_eslint_use_global = 1
 let g:ale_javascript_eslint_executable = 'eslint_d'
-" Keep golint because golangci-lint ignores some results of golint
-" see: https://github.com/golangci/golangci-lint#command-line-options
-let g:ale_linters = {'javascript': ['eslint'], 'go': ['golangci-lint'],'proto': ['protolint']}
+let g:ale_linters = {
+      \ 'javascript': ['eslint'],
+      \ 'go': ['gopls', 'golangci-lint'],
+      \ 'proto': ['protolint']}
 let g:ale_fixers = {'go': ['goimports']}
 let g:ale_go_golangci_lint_package = 1
 " Disable virtualtext - comment-style text on errors or warnings
